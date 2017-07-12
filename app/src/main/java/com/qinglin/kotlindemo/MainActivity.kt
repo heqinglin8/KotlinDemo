@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.TextView
+import java.util.*
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
     val TAG = "hql"
@@ -17,8 +18,49 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         test()
         test2()
         testNull()
+        test3()
     }
 
+    private fun test3(){
+        var i:Int = 1
+
+        var b:Byte = i.toByte()
+
+        println(b)
+
+        println("int:"+charConvertInt('9'))
+
+        //16进制按位置取反
+        var g = 0x000FF000
+         g = g.inv()
+        println(g)
+
+        // 二进制
+
+        var h = 0b111
+        h = h.inv()
+        println(h)
+
+        val x: IntArray = intArrayOf(1, 2, 3)
+
+        x[0] = x[0] + x.get(1)+x.get(2)
+        println(x.get(0))
+
+        //字符串
+
+        val str = "afdfgfghfghgfh"
+        for (c in str){
+            println(c)
+        }
+    }
+
+    private fun charConvertInt(c:Char):Int{
+        if(c !in '0'..'9'){
+           throw IllegalArgumentException("out of range")
+        }
+
+        return c.toInt() - '0'.toInt()
+    }
     private fun testNull() {
         printPrice("8", "24")
         printPrice2("24","8")
