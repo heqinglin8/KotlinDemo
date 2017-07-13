@@ -21,18 +21,18 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         test3()
     }
 
-    private fun test3(){
-        var i:Int = 1
+    private fun test3() {
+        var i: Int = 1
 
-        var b:Byte = i.toByte()
+        var b: Byte = i.toByte()
 
         println(b)
 
-        println("int:"+charConvertInt('9'))
+        println("int:" + charConvertInt('9'))
 
         //16进制按位置取反
         var g = 0x000FF000
-         g = g.inv()
+        g = g.inv()
         println(g)
 
         // 二进制
@@ -43,27 +43,113 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
         val x: IntArray = intArrayOf(1, 2, 3)
 
-        x[0] = x[0] + x.get(1)+x.get(2)
+        x[0] = x[0] + x.get(1) + x.get(2)
         println(x.get(0))
 
         //字符串
-
         val str = "afdfgfghfghgfh"
-        for (c in str){
+        for (c in str) {
             println(c)
         }
+
+        //for循环
+        var list1 = listOf("清林", "亚平", "伟军", "国军")
+        for (item in list1) {
+            println(item)
+        }
+        val arr1 = arrayOf("何清林", "亚平", "伟军", "国军")
+        for (item in arr1) {
+            println(item)
+        }
+        var index = 0
+        while (index < list1.size) {
+            println(list1.get(index))
+            index++
+        }
+        //区间 包含头尾 【1在区间内】【10在区间内】
+        var num = 1
+        if (num in 1..10) {
+            println("${num}在区间内")
+        }
+
+        if ("清林" in list1) {
+            println("何清林在区间内")
+        }
+        //区间迭代
+        for (x in 1..5) {
+            println(x)
+        }
+        //数列迭代
+        for (x in 1..10 step 2) {
+            println(x)
+        }
+        //倒序迭代
+        for (x in 9 downTo 1 step 3) {
+            println(x)
+        }
+
+        //取代switch的when
+        val name = "何清林"
+        when (name) {//如果很多分支需要用相同的方式处理，则可以把多个分支条件放在一起，用逗号分隔
+            "何清林", "亚平" -> println("好耶！")
+            "伟军" -> println("good！")
+            "国军" -> println("国！")
+            else -> println("这他妈啥玩意儿？")
+        }
+        when {
+            name in list1 -> println("在第一梯队")
+            name in arr1 -> println("在第二梯队")
+            else -> println("这他妈啥玩意儿？")
+        }
+        var number = 12
+        when (number) {
+            in 1..10 -> println("在第一梯队")
+            in 10..20 -> println("在第二梯队")
+            else -> println("这他妈啥玩意儿？")
+        }
+
+        //可以取代if elseif
+        var type = 3
+        when (type) {
+            1 -> println("第1名")
+            2 -> println("第2名")
+            3 -> println("第3名")
+            else -> println("陪练")
+        }
+
+        //用when构造简单方法
+        val str1 = "levelprefix"
+        println(hasPrefix(str1))
+
+        //while do..while照用
+        var age = 10
+        while(age>0){
+            println("age:"+age)
+            age --
+        }
+//        do..while
+        do{
+            println("age:"+age)
+            age ++
+        }while (age<10)
     }
 
-    private fun charConvertInt(c:Char):Int{
-        if(c !in '0'..'9'){
-           throw IllegalArgumentException("out of range")
+    fun hasPrefix(str:Any) = when(str){
+        is String -> str.contains("prefix") || str.contains("mark")
+         else -> false
+    }
+
+    private fun charConvertInt(c: Char): Int {
+        if (c !in '0'..'9') {
+            throw IllegalArgumentException("out of range")
         }
 
         return c.toInt() - '0'.toInt()
     }
+
     private fun testNull() {
         printPrice("8", "24")
-        printPrice2("24","8")
+        printPrice2("24", "8")
         //正确：自动检测变量类型
         var list = listOf("何某某", null)
         println("size:" + list.size)
@@ -71,10 +157,10 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 //        var list = null
 //        println("size:" + list.size)
 
-        for (entity in list){
+        for (entity in list) {
             println(entity)
             //判断类型后不用强转
-            if(entity is String){
+            if (entity is String) {
                 println(entity.length)
             }
         }
