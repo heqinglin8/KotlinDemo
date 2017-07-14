@@ -26,6 +26,13 @@ fun main(args: Array<String>) {
     //过滤
     var ints3 = ints.filter { it%2 == 0 }
     println(ints3)
+
+    //map的迭代
+    var map = mapOf("淘宝" to "马云","腾讯" to "马化腾","百度" to "李彦宏")
+    for((key,value) in map){
+        println("企业：${key},创始人：${value}")
+    }
+    println(map.get("腾讯"))
 }
 
 //    private fun hello(name: String) {
